@@ -19,7 +19,7 @@ def test_load_json(mock_os):
 @patch("os.path.exists")
 def test_invalid_path(mock_os):
     mock_os.return_value = False
-    with pytest.raises(FileNotFoundError, match="Файл "):
+    with pytest.raises(FileNotFoundError, match="Файл invalid_path не найден или удален"):
         load_json("invalid_path")
 
 
