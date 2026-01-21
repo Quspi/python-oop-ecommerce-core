@@ -34,3 +34,19 @@ def empty_category():
         "Современные телевизоры",
         [],
     )
+
+
+@pytest.fixture
+def json_data():
+    return [
+        {
+            "name": "Смартфоны",
+            "description": "Описание",
+            "products": [{"name": "Samsung", "description": "Описание продукта", "price": 100.0, "quantity": 5}],
+        }
+    ]
+
+
+@pytest.fixture
+def invalid_data():
+    return [{"name": "Категория без товаров"}]
