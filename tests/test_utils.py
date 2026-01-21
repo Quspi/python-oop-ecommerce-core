@@ -3,7 +3,9 @@ from unittest.mock import mock_open, patch
 
 import pytest
 
-from src.utils import load_json
+from src.category import Category
+from src.product import Product
+from src.utils import create_objects_from_json, load_json
 
 
 @patch("os.path.exists")
@@ -27,3 +29,21 @@ def test_invalid_json(mock_os):
     with patch("builtins.open", mock_open(read_data="{invalid_data")):
         with pytest.raises(json.JSONDecodeError):
             load_json("invalid_json")
+
+
+def test_create_objects_from_json(json_data):
+    result = create_objects_from_json(json_data)
+
+    for category in result:
+        assert isinstance(category, Category)
+
+        for product in category.products:
+            assert isinstance(product, Product)
+
+    assert result[0].name == "Смартфоны"
+    assert result[0].products[0].price == 100.0
+
+
+def test_invalid_data_create_objects_from_json(invalid_data):
+    with pytest.raises(KeyError):
+        create_objects_from_json(invalid_data)
