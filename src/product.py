@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Optional
+
 
 class Product:
     """Класс для представления товара."""
@@ -17,9 +19,23 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, product: dict) -> Product:
-        """Метод для создания объекта Product из словаря."""
+    def new_product(cls, product: dict, existing_products: Optional[list[Product]] = None) -> Product:
+        """
+        Создаёт объект Product из словаря.
+        Если передан список existing_products, ищет товар с таким же именем.
+        При нахождении дубликата увеличивает его количество и выбирает максимальную цену.
+        Возвращает существующий (обновлённый) или новый объект Product.
+        """
         try:
-            return cls(**product)
+            new_product = cls(**product)
         except TypeError:
             raise ValueError("Ошибка в структуре данных продукта")
+
+        if existing_products is not None:
+            for existing_product in existing_products:
+                if existing_product.name == new_product.name:
+                    existing_product.quantity += new_product.quantity
+                    existing_product.price = max(existing_product.price, new_product.price)
+                    return existing_product
+
+        return new_product
