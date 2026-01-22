@@ -59,3 +59,5 @@ class Product:
                 user_answer = input("Новая цена ниже текущей, для подтверждения введите `Y`")
                 if user_answer.upper() == "Y":
                     self.__price = new_price
+            else:
+                self.__price = new_price
