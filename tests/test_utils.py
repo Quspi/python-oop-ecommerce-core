@@ -4,7 +4,6 @@ from unittest.mock import mock_open, patch
 import pytest
 
 from src.category import Category
-from src.product import Product
 from src.utils import create_objects_from_json, load_json
 
 
