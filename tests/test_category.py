@@ -7,7 +7,10 @@ def test_category(category):
         category.description
         == "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни"
     )
-    assert len(category.products) == 2
+    assert (
+        category.products
+        == f"Название продукта, 180000.0 руб. Остаток: 10 шт.\nНазвание продукта, 210000.0 руб. Остаток: 18 шт.\n"
+    )
 
     assert Category.category_count == 1
     assert Category.product_count == 2
