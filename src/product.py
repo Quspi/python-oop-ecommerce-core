@@ -8,14 +8,14 @@ class Product:
 
     name: str
     description: str
-    price: float
+    __price: float
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Метод, который инициализирует экземпляры класса."""
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
     @classmethod
@@ -39,3 +39,23 @@ class Product:
                     return existing_product
 
         return new_product
+
+    @property
+    def price(self) -> float:
+        """Возвращает текущую цену товара."""
+        return self.__price
+
+    @price.setter
+    def price(self, new_price: float) -> None:
+        """
+        Устанавливает новую цену товара.
+        Если цена <= 0, выводит предупреждение и не изменяет цену.
+        Если новая цена ниже текущей, запрашивает подтверждение через ввод 'Y'.
+        """
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        else:
+            if new_price < self.__price:
+                user_answer = input("Новая цена ниже текущей, для подтверждения введите `Y`")
+                if user_answer.upper() == "Y":
+                    self.__price = new_price
