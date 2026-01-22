@@ -50,3 +50,13 @@ def json_data():
 @pytest.fixture
 def invalid_data():
     return [{"name": "Категория без товаров"}]
+
+
+@pytest.fixture
+def product_dict():
+    return {"name": "Samsung Galaxy C23 Ultra", "description": "Описание продукта", "price": 205000.0, "quantity": 5}
+
+
+@pytest.fixture
+def product_list(product_1, product_2):
+    return [product_1, product_2]
