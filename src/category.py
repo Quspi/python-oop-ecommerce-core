@@ -25,3 +25,10 @@ class Category:
         if isinstance(product, Product):
             self.__products.append(product)
             Category.product_count += 1
+
+    @property
+    def products(self) -> str:
+        products_info = ""
+        for product in self.__products:
+            products_info += f"Название продукта, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        return products_info
