@@ -71,10 +71,3 @@ class Product:
                     self.__price = new_price
             else:
                 self.__price = new_price
-
-
-if __name__ == "__main__":
-    print(
-        Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 10)
-        + Product("Iphone 15", "512GB, Gray space", 210000.0, 18)
-    )
