@@ -11,7 +11,7 @@ class Category:
     category_count = 0
     product_count = 0
 
-    def __init__(self, name: str, description: str, products: list):
+    def __init__(self, name: str, description: str, products: list[Product]):
         """Метод, который инициализирует экземпляры класса."""
         self.name = name
         self.description = description
@@ -22,7 +22,7 @@ class Category:
 
     def __str__(self) -> str:
         """Возвращает строку: 'название категории, количество продуктов:
-           X шт.', где X - сумма quantity всех товаров категории."""
+        X шт.', где X - сумма quantity всех товаров категории."""
         total_products = 0
         for product in self.__products:
             total_products += product.quantity
