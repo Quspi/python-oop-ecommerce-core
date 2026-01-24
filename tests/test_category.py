@@ -29,3 +29,13 @@ def test_category_product_property(category):
         category.products
         == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 10 шт.\nIphone 15, 210000.0 руб. Остаток: 18 шт.\n"
     )
+
+
+def test_category_str(category):
+    assert str(category) == "Смартфоны, количество продуктов: 28 шт."
+
+
+def test_category_product_list_property(category, product_list):
+    result = category.product_list
+    assert result == product_list
+    assert len(result) == 2
