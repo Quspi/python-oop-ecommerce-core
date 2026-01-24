@@ -18,6 +18,10 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        """Возвращает строковое представление товара в формате: 'название, цена руб. Остаток: количество шт.'"""
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
+
     @classmethod
     def new_product(cls, product: dict, existing_products: Optional[list[Product]] = None) -> Product:
         """
