@@ -28,7 +28,8 @@ class Category:
 
     @property
     def products(self) -> str:
+        """Возвращает строку с информацией о всех товарах категории, используя их строковое представление."""
         products_info = ""
         for product in self.__products:
-            products_info += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            products_info += str(product)
         return products_info
