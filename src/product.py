@@ -22,6 +22,12 @@ class Product:
         """Возвращает строковое представление товара в формате: 'название, цена руб. Остаток: количество шт.'"""
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
 
+    def __add__(self, other: Product) -> float:
+        """Возвращает суммарную стоимость товара self и other на основе их цены и количества."""
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты Product")
+        return self.price * self.quantity + other.price * other.quantity
+
     @classmethod
     def new_product(cls, product: dict, existing_products: Optional[list[Product]] = None) -> Product:
         """
@@ -65,3 +71,10 @@ class Product:
                     self.__price = new_price
             else:
                 self.__price = new_price
+
+
+if __name__ == "__main__":
+    print(
+        Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 10)
+        + Product("Iphone 15", "512GB, Gray space", 210000.0, 18)
+    )
