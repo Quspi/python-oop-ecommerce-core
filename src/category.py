@@ -41,3 +41,8 @@ class Category:
         for product in self.__products:
             products_info += str(product)
         return products_info
+
+    @property
+    def product_list(self) -> list[Product]:
+        """Возвращает список товаров категории."""
+        return self.__products
