@@ -3,6 +3,7 @@ import pytest
 from src.category import Category
 from src.category_iterator import CategoryIterator
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 @pytest.fixture
@@ -66,3 +67,13 @@ def product_list(product_1, product_2):
 @pytest.fixture
 def category_iterator(category):
     return CategoryIterator(category)
+
+
+@pytest.fixture
+def smartphone_1():
+    return Smartphone("iPhone 15", "Смартфон", 1000.00, 10, 95, "15 Pro", 256, "Black")
+
+
+@pytest.fixture
+def smartphone_2():
+    return Smartphone("iPhone 12", "Смартфон", 300.00, 10, 75, "12 Pro", 512, "Black")
