@@ -22,3 +22,9 @@ class Smartphone(Product):
         self.model = model
         self.memory = memory
         self.color = color
+
+    def __add__(self, other: Product) -> float:
+        """Возвращает суммарную стоимость товаров Smartphone на основе их цены и количества."""
+        if type(other) is not Smartphone:
+            raise TypeError("Складывать можно только объекты Smartphone.")
+        return super().__add__(other)
