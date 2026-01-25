@@ -54,3 +54,16 @@ def test_price_setter_negative(capsys, product_1):
     product_1.price = -100
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная\n" == captured.out
+
+
+def test_str_product(product_1):
+    assert str(product_1) == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 10 шт.\n"
+
+
+def test_add_product(product_1, product_2):
+    assert product_1 + product_2 == 5580000.0
+
+
+def test_add_product_negative(product_1, category):
+    with pytest.raises(TypeError, match="Можно складывать только объекты Product"):
+        product_1 + 35000

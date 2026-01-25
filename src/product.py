@@ -18,6 +18,16 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        """Возвращает строковое представление товара в формате: 'название, цена руб. Остаток: количество шт.'"""
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
+
+    def __add__(self, other: Product) -> float:
+        """Возвращает суммарную стоимость товара self и other на основе их цены и количества."""
+        if not isinstance(other, Product):
+            raise TypeError("Можно складывать только объекты Product")
+        return self.price * self.quantity + other.price * other.quantity
+
     @classmethod
     def new_product(cls, product: dict, existing_products: Optional[list[Product]] = None) -> Product:
         """

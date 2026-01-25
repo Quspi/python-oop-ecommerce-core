@@ -1,4 +1,7 @@
+import pytest
+
 from src.category import Category
+from src.category_iterator import CategoryIterator
 
 
 def test_category(category):
@@ -29,3 +32,23 @@ def test_category_product_property(category):
         category.products
         == "Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 10 шт.\nIphone 15, 210000.0 руб. Остаток: 18 шт.\n"
     )
+
+
+def test_category_str(category):
+    assert str(category) == "Смартфоны, количество продуктов: 28 шт."
+
+
+def test_category_product_list_property(category, product_list):
+    result = category.product_list
+    assert result == product_list
+    assert len(result) == 2
+
+
+def test_category_iterator(category_iterator):
+    iterator = iter(category_iterator)
+    assert isinstance(iterator, CategoryIterator)
+    assert iterator.index == 0
+    assert next(iterator).name == "Samsung Galaxy C23 Ultra"
+    assert next(iterator).name == "Iphone 15"
+    with pytest.raises(StopIteration):
+        next(iterator)
