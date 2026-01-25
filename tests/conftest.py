@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.category_iterator import CategoryIterator
+from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
 
@@ -77,3 +78,13 @@ def smartphone_1():
 @pytest.fixture
 def smartphone_2():
     return Smartphone("iPhone 12", "Смартфон", 300.00, 10, 75, "12 Pro", 512, "Black")
+
+
+@pytest.fixture
+def lawn_grass_1():
+    return LawnGrass("Газонная трава", "Трава для газона", 50.0, 100, "Россия", 14, "Зеленый")
+
+
+@pytest.fixture
+def lawn_grass_2():
+    return LawnGrass("Трава спортивная", "Для стадионов", 75.0, 50, "Германия", 10, "Темно-зеленый")
