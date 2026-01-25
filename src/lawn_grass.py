@@ -20,3 +20,9 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+    def __add__(self, other: Product) -> float:
+        """Возвращает суммарную стоимость товаров LawnGrass на основе их цены и количества."""
+        if type(other) is not LawnGrass:
+            raise TypeError("Складывать можно только объекты LawnGrass.")
+        return super().__add__(other)
