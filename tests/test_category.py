@@ -27,6 +27,11 @@ def test_category_add_product(empty_category, product_1):
     assert product_1.name in empty_category.products
 
 
+def test_category_add_product_negative(empty_category, category):
+    with pytest.raises(TypeError, match="Добавлять можно только объекты Product или его наследников"):
+        empty_category.add_product(category)
+
+
 def test_category_product_property(category):
     assert (
         category.products

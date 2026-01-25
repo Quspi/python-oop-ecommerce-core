@@ -33,6 +33,8 @@ class Category:
         if isinstance(product, Product):
             self.__products.append(product)
             Category.product_count += 1
+        else:
+            raise TypeError("Добавлять можно только объекты Product или его наследников")
 
     @property
     def products(self) -> str:
