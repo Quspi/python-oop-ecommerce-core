@@ -3,6 +3,7 @@ import pytest
 from src.category import Category
 from src.category_iterator import CategoryIterator
 from src.lawn_grass import LawnGrass
+from src.order import Order
 from src.product import Product
 from src.smartphone import Smartphone
 
@@ -88,3 +89,13 @@ def lawn_grass_1():
 @pytest.fixture
 def lawn_grass_2():
     return LawnGrass("Трава спортивная", "Для стадионов", 75.0, 50, "Германия", 10, "Темно-зеленый")
+
+
+@pytest.fixture
+def empty_order():
+    return Order()
+
+
+@pytest.fixture
+def order_with_excessive_quantity():
+    return Order(1000)
