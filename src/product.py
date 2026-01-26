@@ -2,8 +2,11 @@ from __future__ import annotations
 
 from typing import Optional
 
+from src.base_product import BaseProduct
+from src.mixin_product_log import MixinProductLog
 
-class Product:
+
+class Product(MixinProductLog, BaseProduct):
     """Класс для представления товара."""
 
     name: str
@@ -17,6 +20,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         """Возвращает строковое представление товара в формате: 'название, цена руб. Остаток: количество шт.'"""
