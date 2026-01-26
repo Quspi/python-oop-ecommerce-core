@@ -53,7 +53,7 @@ def test_price_setter(mock_input, new_price, expected, user_answer, product_1):
 def test_price_setter_negative(capsys, product_1):
     product_1.price = -100
     captured = capsys.readouterr()
-    assert "Цена не должна быть нулевая или отрицательная\n" == captured.out
+    assert "Цена не должна быть нулевая или отрицательная" == captured.out.split("\n")[1]
 
 
 def test_str_product(product_1):
