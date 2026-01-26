@@ -44,6 +44,18 @@
 - Сеттер `price` проверяет: цена > 0. При понижении цены запрашивает подтверждение (`Y`).
 - Класс-метод `Product.new_product` создаёт товар из словаря, объединяет дубликаты (суммирует количество, берёт max цену).
 
+**Абстрактные классы**:
+- `BaseProduct`: абстрактный класс для всех товаров. Определяет методы `__str__` и `__add__`.
+- `BaseObject`: абстрактный класс для объектов, работающих с продуктами (`Category`, `Order`). Определяет `__init__`, `__str__`, `add_product`.
+
+**Миксин**:
+- `MixinProductLog`: логирует создание объектов `Product` через `__repr__`.
+
+**Класс** `Order`:
+- Представляет заказ на один товар.
+- Автоматически генерирует уникальный ID.
+- Метод `add_product` проверяет доступное количество товара и рассчитывает итоговую стоимость.
+
 ## Поддерживаемые форматы данных
 - JSON
 
@@ -64,6 +76,7 @@ from src.smartphone import Smartphone
 from src.lawn_grass import LawnGrass
 from src.category import Category
 from src.utils import load_json, create_objects_from_json
+from src.order import Order
 
 # 1. Базовое использование
 phone = Product("iPhone", "Смартфон", 999.99, 10)
@@ -106,6 +119,16 @@ garden = Category("Сад", "Товары для сада", [grass])
 # 7. Сложение товаров
 total_smartphones = smartphone + smartphone  # ОК
 # total_mixed = smartphone + grass          # Вызовет TypeError
+
+# Создание заказа
+order = Order(quantity=2)
+order.add_product(product_1)  # product_1 — объект Product
+
+print(order)  # ID заказа: 1, к оплате: 360000.0 руб.
+
+# Попытка добавить второй товар вызовет ValueError
+# order.add_product(product_2)
+
 ```
 
 ## Тестирование
