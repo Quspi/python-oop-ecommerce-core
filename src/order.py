@@ -20,13 +20,13 @@ class Order(BaseObject):
 
     def __str__(self) -> str:
         """Возвращает строковое представление заказа."""
-        return f"ID заказа: {self.order_id}, к оплате: {self.total_price}руб."
+        return f"ID заказа: {self.order_id}, к оплате: {self.total_price} руб."
 
     def add_product(self, product: Product) -> None:
         """Добавляет товар в заказ и рассчитывает финальную стоимость."""
         if self.product is None:
             self.product = product
-            if product.quantity <= self.quantity:
+            if product.quantity >= self.quantity:
                 self.total_price = self.quantity * product.price
             else:
                 raise ValueError("Количество в заказе не может быть больше чем есть в магазине")
