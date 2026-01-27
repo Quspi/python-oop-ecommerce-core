@@ -66,6 +66,6 @@ class Category(BaseObject):
         """Возвращает среднюю стоимость товаров в категории, если категория пустая, возвращает 0."""
         try:
             total_price: float = sum(p.price for p in self.__products)
-            return total_price / len(self.__products)
+            return round(total_price / len(self.__products), 2)
         except ZeroDivisionError:
             return 0.0
