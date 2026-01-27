@@ -66,9 +66,9 @@ def test_category_iterator(category_iterator):
         next(iterator)
 
 
-def test_category_get_average_price(category):
-    assert category.get_average_price() == 195000.0
+def test_category_middle_price(category):
+    assert category.middle_price() == 195000.0
 
 
-def test_empty_category_get_average_price(empty_category):
-    assert empty_category.get_average_price() == 0
+def test_empty_category_middle_price(empty_category):
+    assert empty_category.middle_price() == 0

@@ -62,7 +62,7 @@ class Category(BaseObject):
         """Возвращает список товаров категории."""
         return self.__products
 
-    def get_average_price(self) -> float:
+    def middle_price(self) -> float:
         """Возвращает среднюю стоимость товаров в категории, если категория пустая, возвращает 0."""
         try:
             total_price: float = sum(p.price for p in self.__products)
