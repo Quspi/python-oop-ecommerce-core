@@ -1,6 +1,7 @@
 from typing import Optional
 
 from src.base_object import BaseObject
+from src.exceptions import ZeroQuantityError
 from src.product import Product
 
 
@@ -11,6 +12,8 @@ class Order(BaseObject):
 
     def __init__(self, quantity: int = 1) -> None:
         """Инициализирует новый заказ с уникальным ID."""
+        if quantity == 0:
+            raise ZeroQuantityError("Заказ с 0 количеством товара не может быть создан")
         self.quantity: int = quantity
         self.total_price: float = 0
         self.product: Optional[Product] = None

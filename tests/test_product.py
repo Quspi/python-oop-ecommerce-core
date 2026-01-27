@@ -12,6 +12,11 @@ def test_product(product_1):
     assert product_1.quantity == 10
 
 
+def test_product_init_zero_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 0)
+
+
 def test_new_product_class_method(product_dict):
     product = Product.new_product(product_dict)
     assert isinstance(product, Product)

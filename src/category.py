@@ -1,4 +1,5 @@
 from src.base_object import BaseObject
+from src.exceptions import ZeroQuantityError
 from src.product import Product
 
 
@@ -31,11 +32,22 @@ class Category(BaseObject):
 
     def add_product(self, product: Product) -> None:
         """Метод для добавления продукта в список продуктов категории."""
-        if isinstance(product, Product):
+        try:
+            if not isinstance(product, Product):
+                raise TypeError("Добавлять можно только объекты Product или его наследников")
+
+            if product.quantity == 0:
+                raise ZeroQuantityError("Товар с нулевым количеством не может быть добавлен")
+
             self.__products.append(product)
             Category.product_count += 1
-        else:
-            raise TypeError("Добавлять можно только объекты Product или его наследников")
+            print("Товар успешно добавлен")
+
+        except (ValueError, ZeroQuantityError):
+            raise
+
+        finally:
+            print("Обработка добавления товара завершена")
 
     @property
     def products(self) -> str:
@@ -49,3 +61,11 @@ class Category(BaseObject):
     def product_list(self) -> list[Product]:
         """Возвращает список товаров категории."""
         return self.__products
+
+    def middle_price(self) -> float:
+        """Возвращает среднюю стоимость товаров в категории, если категория пустая, возвращает 0."""
+        try:
+            total_price: float = sum(p.price for p in self.__products)
+            return round(total_price / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0.0

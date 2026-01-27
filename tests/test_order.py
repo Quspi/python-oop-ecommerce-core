@@ -1,11 +1,19 @@
 import pytest
 
+from src.exceptions import ZeroQuantityError
+from src.order import Order
+
 
 def test_order_init(empty_order):
     assert empty_order.order_id == 1
     assert empty_order.total_price == 0
     assert empty_order.product is None
     assert empty_order.quantity == 1
+
+
+def test_order_init_zero_quantity():
+    with pytest.raises(ZeroQuantityError, match="Заказ с 0 количеством товара не может быть создан"):
+        Order(0)
 
 
 def test_order_str(empty_order, product_1):

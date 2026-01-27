@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.category_iterator import CategoryIterator
+from src.exceptions import ZeroQuantityError
 
 
 def test_category(category):
@@ -32,6 +33,12 @@ def test_category_add_product_negative(empty_category, category):
         empty_category.add_product(category)
 
 
+def test_category_add_product_zero_quantity(empty_category, product_1):
+    product_1.quantity = 0
+    with pytest.raises(ZeroQuantityError, match="Товар с нулевым количеством не может быть добавлен"):
+        empty_category.add_product(product_1)
+
+
 def test_category_product_property(category):
     assert (
         category.products
@@ -57,3 +64,11 @@ def test_category_iterator(category_iterator):
     assert next(iterator).name == "Iphone 15"
     with pytest.raises(StopIteration):
         next(iterator)
+
+
+def test_category_middle_price(category):
+    assert category.middle_price() == 195000.0
+
+
+def test_empty_category_middle_price(empty_category):
+    assert empty_category.middle_price() == 0
